@@ -5,9 +5,9 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/json-iterator/go"
-	"github.com/stretchr/testify/require"
 	"strings"
+
+	"github.com/stretchr/testify/require"
 )
 
 func Test_decode_TextMarshaler_key_map(t *testing.T) {

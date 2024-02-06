@@ -1,9 +1,9 @@
 package extra
 
 import (
-	"github.com/json-iterator/go"
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func init() {

@@ -3,12 +3,12 @@ package test
 import (
 	"bytes"
 	"fmt"
-	"github.com/json-iterator/go"
-	"github.com/stretchr/testify/require"
 	"strconv"
 	"testing"
 	"time"
 	"unsafe"
+
+	"github.com/stretchr/testify/require"
 )
 
 func Test_customize_type_decoder(t *testing.T) {
@@ -21,7 +21,7 @@ func Test_customize_type_decoder(t *testing.T) {
 		}
 		*((*time.Time)(ptr)) = t
 	})
-	//defer jsoniter.ConfigDefault.(*frozenConfig).cleanDecoders()
+	// defer jsoniter.ConfigDefault.(*frozenConfig).cleanDecoders()
 	val := time.Time{}
 	err := jsoniter.Unmarshal([]byte(`"2016-12-05 08:43:28"`), &val)
 	if err != nil {
@@ -35,13 +35,13 @@ func Test_customize_type_decoder(t *testing.T) {
 
 func Test_customize_byte_array_encoder(t *testing.T) {
 	t.Skip()
-	//jsoniter.ConfigDefault.(*frozenConfig).cleanEncoders()
+	// jsoniter.ConfigDefault.(*frozenConfig).cleanEncoders()
 	should := require.New(t)
 	jsoniter.RegisterTypeEncoderFunc("[]uint8", func(ptr unsafe.Pointer, stream *jsoniter.Stream) {
 		t := *((*[]byte)(ptr))
 		stream.WriteString(string(t))
 	}, nil)
-	//defer jsoniter.ConfigDefault.(*frozenConfig).cleanEncoders()
+	// defer jsoniter.ConfigDefault.(*frozenConfig).cleanEncoders()
 	val := []byte("abc")
 	str, err := jsoniter.MarshalToString(val)
 	should.Nil(err)
@@ -52,7 +52,7 @@ type CustomEncoderAttachmentTestStruct struct {
 	Value int32 `json:"value"`
 }
 
-type CustomEncoderAttachmentTestStructEncoder struct {}
+type CustomEncoderAttachmentTestStructEncoder struct{}
 
 func (c *CustomEncoderAttachmentTestStructEncoder) Encode(ptr unsafe.Pointer, stream *jsoniter.Stream) {
 	attachVal, ok := stream.Attachment.(int)
@@ -87,7 +87,7 @@ func Test_customize_field_decoder(t *testing.T) {
 	jsoniter.RegisterFieldDecoderFunc("jsoniter.Tom", "field1", func(ptr unsafe.Pointer, iter *jsoniter.Iterator) {
 		*((*string)(ptr)) = strconv.Itoa(iter.ReadInt())
 	})
-	//defer jsoniter.ConfigDefault.(*frozenConfig).cleanDecoders()
+	// defer jsoniter.ConfigDefault.(*frozenConfig).cleanDecoders()
 	tom := Tom{}
 	err := jsoniter.Unmarshal([]byte(`{"field1": 100}`), &tom)
 	if err != nil {

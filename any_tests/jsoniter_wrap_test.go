@@ -3,7 +3,6 @@ package any_tests
 import (
 	"testing"
 
-	"github.com/json-iterator/go"
 	"github.com/stretchr/testify/require"
 )
 
@@ -25,8 +24,8 @@ func Test_wrap_and_valuetype_everything(t *testing.T) {
 	any = jsoniter.Wrap(int16(10))
 	should.Equal(any.ValueType(), jsoniter.NumberValue)
 	should.Equal(any.LastError(), nil)
-	//i = int16(10)
-	//should.Equal(i, any.GetInterface())
+	// i = int16(10)
+	// should.Equal(i, any.GetInterface())
 
 	any = jsoniter.Wrap(int32(10))
 	should.Equal(any.ValueType(), jsoniter.NumberValue)
@@ -43,8 +42,8 @@ func Test_wrap_and_valuetype_everything(t *testing.T) {
 	should.Equal(any.ValueType(), jsoniter.NumberValue)
 	should.Equal(any.LastError(), nil)
 	// not equal
-	//i = uint(10)
-	//should.Equal(i, any.GetInterface())
+	// i = uint(10)
+	// should.Equal(i, any.GetInterface())
 	any = jsoniter.Wrap(uint8(10))
 	should.Equal(any.ValueType(), jsoniter.NumberValue)
 	should.Equal(any.LastError(), nil)
@@ -69,8 +68,8 @@ func Test_wrap_and_valuetype_everything(t *testing.T) {
 	should.Equal(any.ValueType(), jsoniter.NumberValue)
 	should.Equal(any.LastError(), nil)
 	// not equal
-	//i = float32(10)
-	//should.Equal(i, any.GetInterface())
+	// i = float32(10)
+	// should.Equal(i, any.GetInterface())
 	any = jsoniter.Wrap(float64(10))
 	should.Equal(any.ValueType(), jsoniter.NumberValue)
 	should.Equal(any.LastError(), nil)

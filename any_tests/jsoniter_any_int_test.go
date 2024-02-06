@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/json-iterator/go"
 	"github.com/stretchr/testify/require"
 )
 
@@ -193,6 +192,6 @@ func Test_int_lazy_any_get(t *testing.T) {
 	should := require.New(t)
 	any := jsoniter.Get([]byte("1234"))
 	// panic!!
-	//should.Equal(any.LastError(), io.EOF)
+	// should.Equal(any.LastError(), io.EOF)
 	should.Equal(jsoniter.InvalidValue, any.Get(1, "2").ValueType())
 }

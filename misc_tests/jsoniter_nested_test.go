@@ -2,7 +2,6 @@ package misc_tests
 
 import (
 	"encoding/json"
-	"github.com/json-iterator/go"
 	"reflect"
 	"strings"
 	"testing"

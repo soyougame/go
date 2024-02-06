@@ -2,13 +2,12 @@ package test
 
 import (
 	"encoding/json"
-	"github.com/json-iterator/go"
 	"io/ioutil"
 	"os"
 	"testing"
 )
 
-//func Test_large_file(t *testing.T) {
+// func Test_large_file(t *testing.T) {
 //	file, err := os.Open("/tmp/large-file.json")
 //	if err != nil {
 //		t.Fatal(err)
@@ -22,7 +21,7 @@ import (
 //	if count != 11351 {
 //		t.Fatal(count)
 //	}
-//}
+// }
 
 func init() {
 	ioutil.WriteFile("/tmp/large-file.json", []byte(`[{
