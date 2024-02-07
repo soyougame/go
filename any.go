@@ -3,11 +3,12 @@ package jsoniter
 import (
 	"errors"
 	"fmt"
-	"github.com/modern-go/reflect2"
 	"io"
 	"reflect"
 	"strconv"
 	"unsafe"
+
+	"github.com/modern-go/reflect2"
 )
 
 // Any generic object representation.
@@ -204,6 +205,9 @@ func locateObjectField(iter *Iterator, target string) []byte {
 	iter.ReadObjectCB(func(iter *Iterator, field string) bool {
 		if field == target {
 			found = iter.SkipAndReturnBytes()
+
+			capturePool.Put(found)
+
 			return false
 		}
 		iter.Skip()

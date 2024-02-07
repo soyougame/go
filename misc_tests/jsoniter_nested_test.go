@@ -5,6 +5,8 @@ import (
 	"reflect"
 	"strings"
 	"testing"
+
+	jsoniter "github.com/soyougame/go"
 )
 
 type Level1 struct {

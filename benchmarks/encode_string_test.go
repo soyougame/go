@@ -3,6 +3,8 @@ package test
 import (
 	"bytes"
 	"testing"
+
+	jsoniter "github.com/soyougame/go"
 )
 
 func Benchmark_encode_string_with_SetEscapeHTML(b *testing.B) {

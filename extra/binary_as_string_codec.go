@@ -5,6 +5,7 @@ import (
 	"unsafe"
 
 	"github.com/modern-go/reflect2"
+	jsoniter "github.com/soyougame/go"
 )
 
 // safeSet holds the value true if the ASCII character with the given array

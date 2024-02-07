@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 	"unicode/utf8"
+
+	jsoniter "github.com/soyougame/go"
 )
 
 func init() {

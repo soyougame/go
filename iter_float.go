@@ -9,7 +9,10 @@ import (
 	"unsafe"
 )
 
-var floatDigits []int8
+var (
+	floatDigits []int8
+	bytes16Pool = newBytesPool(16, false)
+)
 
 const invalidCharForNumber = int8(-1)
 const endOfNumber = int8(-2)
@@ -35,6 +38,9 @@ func init() {
 // ReadBigFloat read big.Float
 func (iter *Iterator) ReadBigFloat() (ret *big.Float) {
 	str := iter.readNumberAsString()
+
+	defer bytes16Pool.PutString(str)
+
 	if iter.Error != nil && iter.Error != io.EOF {
 		return nil
 	}
@@ -53,6 +59,9 @@ func (iter *Iterator) ReadBigFloat() (ret *big.Float) {
 // ReadBigInt read big.Int
 func (iter *Iterator) ReadBigInt() (ret *big.Int) {
 	str := iter.readNumberAsString()
+
+	defer bytes16Pool.PutString(str)
+
 	if iter.Error != nil && iter.Error != io.EOF {
 		return nil
 	}
@@ -66,7 +75,7 @@ func (iter *Iterator) ReadBigInt() (ret *big.Int) {
 	return ret
 }
 
-//ReadFloat32 read float32
+// ReadFloat32 read float32
 func (iter *Iterator) ReadFloat32() (ret float32) {
 	c := iter.nextToken()
 	if c == '-' {
@@ -157,7 +166,7 @@ non_decimal_loop:
 }
 
 func (iter *Iterator) readNumberAsString() (ret string) {
-	strBuf := [16]byte{}
+	strBuf := bytes16Pool.Get()
 	str := strBuf[0:0]
 load_loop:
 	for {
@@ -187,6 +196,9 @@ load_loop:
 
 func (iter *Iterator) readFloat32SlowPath() (ret float32) {
 	str := iter.readNumberAsString()
+
+	defer bytes16Pool.PutString(str)
+
 	if iter.Error != nil && iter.Error != io.EOF {
 		return
 	}
@@ -298,6 +310,9 @@ non_decimal_loop:
 
 func (iter *Iterator) readFloat64SlowPath() (ret float64) {
 	str := iter.readNumberAsString()
+
+	defer bytes16Pool.PutString(str)
+
 	if iter.Error != nil && iter.Error != io.EOF {
 		return
 	}

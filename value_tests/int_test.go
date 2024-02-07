@@ -7,6 +7,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
+
+	jsoniter "github.com/soyougame/go"
 )
 
 func init() {

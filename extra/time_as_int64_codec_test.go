@@ -4,6 +4,7 @@ import (
 	"testing"
 	"time"
 
+	jsoniter "github.com/soyougame/go"
 	"github.com/stretchr/testify/require"
 )
 

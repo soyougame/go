@@ -9,6 +9,7 @@ import (
 	"testing"
 	"unicode/utf8"
 
+	jsoniter "github.com/soyougame/go"
 	"github.com/stretchr/testify/require"
 )
 

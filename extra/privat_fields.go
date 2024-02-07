@@ -3,6 +3,8 @@ package extra
 import (
 	"strings"
 	"unicode"
+
+	jsoniter "github.com/soyougame/go"
 )
 
 // SupportPrivateFields include private fields when encoding/decoding

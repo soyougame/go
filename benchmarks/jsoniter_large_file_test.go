@@ -5,6 +5,8 @@ import (
 	"io/ioutil"
 	"os"
 	"testing"
+
+	jsoniter "github.com/soyougame/go"
 )
 
 // func Test_large_file(t *testing.T) {

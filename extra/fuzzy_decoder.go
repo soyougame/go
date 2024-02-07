@@ -9,6 +9,7 @@ import (
 	"unsafe"
 
 	"github.com/modern-go/reflect2"
+	jsoniter "github.com/soyougame/go"
 )
 
 const maxUint = ^uint(0)

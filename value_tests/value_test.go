@@ -7,6 +7,8 @@ import (
 
 	"github.com/modern-go/reflect2"
 	"github.com/stretchr/testify/require"
+
+	jsoniter "github.com/soyougame/go"
 )
 
 type unmarshalCase struct {

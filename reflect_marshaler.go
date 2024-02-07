@@ -196,6 +196,11 @@ func (decoder *unmarshalerDecoder) Decode(ptr unsafe.Pointer, iter *Iterator) {
 	iter.nextToken()
 	iter.unreadByte() // skip spaces
 	bytes := iter.SkipAndReturnBytes()
+
+	defer func() {
+		capturePool.Put(bytes)
+	}()
+
 	err := unmarshaler.UnmarshalJSON(bytes)
 	if err != nil {
 		iter.ReportError("unmarshalerDecoder", err.Error())

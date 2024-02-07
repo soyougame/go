@@ -2,6 +2,10 @@ package jsoniter
 
 import "fmt"
 
+var (
+	capturePool = newBytesPool(32, false)
+)
+
 // ReadNil reads a json object as nil and
 // returns whether it's a nil or not
 func (iter *Iterator) ReadNil() (ret bool) {
@@ -54,7 +58,11 @@ func (iter *Iterator) startCaptureTo(buf []byte, captureStartedAt int) {
 }
 
 func (iter *Iterator) startCapture(captureStartedAt int) {
-	iter.startCaptureTo(make([]byte, 0, 32), captureStartedAt)
+	data := capturePool.Get()
+
+	data = data[:0]
+
+	iter.startCaptureTo(data, captureStartedAt)
 }
 
 func (iter *Iterator) stopCapture() []byte {

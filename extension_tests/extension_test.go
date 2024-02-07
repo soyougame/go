@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/modern-go/reflect2"
+	jsoniter "github.com/soyougame/go"
 	"github.com/stretchr/testify/require"
 )
 
